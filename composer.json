@@ -1,0 +1,20 @@
+{
+    "name": "lightster/postgres-db-mgmt",
+    "description": "API for copying, dumping, and restoring postgres databases",
+    "keywords": [
+        "postgres"
+    ],
+    "homepage": "https://github.com/lightster/postgres-db-mgmt",
+    "autoload": {
+        "psr-0": {
+            "Lstr\\Postgres\\DbMgmt\\": "src"
+        }
+    },
+    "require": {
+        "php": "^5.5.0",
+        "silex/silex": "^1.1.0",
+        "lightster/lstr-silex": "0.2.1",
+        "symfony/console": "^2.4.2",
+        "symfony/process": "^2.4.2"
+    }
+}
