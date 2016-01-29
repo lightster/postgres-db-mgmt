@@ -13,7 +13,7 @@
     "require": {
         "php": "^5.5.0",
         "silex/silex": "^1.1.0",
-        "lightster/hodor": "~0.0.2",
+        "lightster/hodor": "^0.0.5",
         "lightster/lstr-silex": "0.2.1",
         "symfony/console": "^2.4.2",
         "symfony/process": "^2.4.2"

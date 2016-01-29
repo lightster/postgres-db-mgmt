@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6c887d550975192b7a7831283782faec",
-    "content-hash": "7a116a8adb1049073e85a8fb2ba14e2e",
+    "hash": "9c4d109fcfe9fcc0496c118b770764dd",
+    "content-hash": "bfffa0931ffc209e84582c6eee531ef5",
     "packages": [
         {
             "name": "assetrinc/assetrinc",
@@ -233,25 +233,28 @@
         },
         {
             "name": "lightster/hodor",
-            "version": "v0.0.2",
+            "version": "v0.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lightster/hodor.git",
-                "reference": "735d64ed4f2bb65278d984132ff84851257807ae"
+                "reference": "92a9376d5068d68d57d476118ea2a92eb934235e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lightster/hodor/zipball/735d64ed4f2bb65278d984132ff84851257807ae",
-                "reference": "735d64ed4f2bb65278d984132ff84851257807ae",
+                "url": "https://api.github.com/repos/lightster/hodor/zipball/92a9376d5068d68d57d476118ea2a92eb934235e",
+                "reference": "92a9376d5068d68d57d476118ea2a92eb934235e",
                 "shasum": ""
             },
             "require": {
                 "davedevelopment/phpmig": "~1.1.0",
+                "lightster/yo-pdo": "^0.0.2",
                 "php": ">=5.5.18",
+                "pimple/pimple": "^1.1.1",
                 "videlalvaro/php-amqplib": "~2.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.5"
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "^4.8.0"
             },
             "type": "library",
             "autoload": {
@@ -269,7 +272,7 @@
                 "queue",
                 "rabbitmq"
             ],
-            "time": "2015-10-05 23:42:43"
+            "time": "2016-01-26 05:51:39"
         },
         {
             "name": "lightster/lstr-silex",
@@ -517,6 +520,44 @@
                 "template"
             ],
             "time": "2014-04-17 03:21:15"
+        },
+        {
+            "name": "lightster/yo-pdo",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lightster/yo-pdo.git",
+                "reference": "ec830e8402b3201b753c3f191d76979200da1650"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lightster/yo-pdo/zipball/ec830e8402b3201b753c3f191d76979200da1650",
+                "reference": "ec830e8402b3201b753c3f191d76979200da1650",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "^4.8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lstr\\YoPdo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Useful add-ons to PDO",
+            "homepage": "http://lightdatasys.com",
+            "keywords": [
+                "database",
+                "lightster",
+                "lstr",
+                "pdo"
+            ],
+            "time": "2015-11-02 06:01:59"
         },
         {
             "name": "pimple/pimple",
