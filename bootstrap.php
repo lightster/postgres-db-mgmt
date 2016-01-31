@@ -7,11 +7,13 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Silex\Application;
 
 use Lstr\Silex\Config\ConfigServiceProvider;
+use Lstr\Postgres\DbMgmt\Service\HodorServiceProvider;
 
 $app = new Application();
 
 // lstr-silex components
 $app->register(new ConfigServiceProvider());
+$app->register(new HodorServiceProvider());
 
 $app['config'] = $app['lstr.config']->load(array(
     __DIR__ . '/config/autoload/*.global.php',
@@ -21,5 +23,7 @@ $app['config'] = $app['lstr.config']->load(array(
 if (isset($app['config']['debug'])) {
     $app['debug'] = $app['config']['debug'];
 }
+
+$app['job-queue'] = $app['hodor']($app['config']['job_queue']['config_file']);
 
 return $app;
