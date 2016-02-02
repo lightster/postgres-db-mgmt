@@ -7,12 +7,14 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Silex\Application;
 
 use Lstr\Silex\Config\ConfigServiceProvider;
+use Lstr\Postgres\DbMgmt\Service\DbMgmtServiceProvider;
 use Lstr\Postgres\DbMgmt\Service\HodorServiceProvider;
 
 $app = new Application();
 
 // lstr-silex components
 $app->register(new ConfigServiceProvider());
+$app->register(new DbMgmtServiceProvider());
 $app->register(new HodorServiceProvider());
 
 $app['config'] = $app['lstr.config']->load(array(

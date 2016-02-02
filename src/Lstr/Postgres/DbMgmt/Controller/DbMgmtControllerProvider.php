@@ -27,7 +27,19 @@ class DbMgmtControllerProvider implements ControllerProviderInterface
         $controllers->post(
             '/dump',
             function (Application $app, Request $request) {
-                return $app->json([]);
+                try {
+                    //TODO: validate params
+                    $job = $app['postgres.db-mgmt']->dump(
+                        $request->get('host'),
+                        $request->get('database'),
+                        $request->get('destinationPath'),
+                        $request->get('callbackUrl')
+                    );
+
+                    return $app->json($job);
+                } catch (Exception $exception) {
+                    return $app->json($exception->getMessage());
+                }
             }
         );
 
