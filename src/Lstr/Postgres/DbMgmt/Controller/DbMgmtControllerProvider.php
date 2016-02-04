@@ -29,7 +29,7 @@ class DbMgmtControllerProvider implements ControllerProviderInterface
             function (Application $app, Request $request) {
                 try {
                     //TODO: validate params
-                    $job = $app['postgres.db-mgmt']->dump(
+                    $job = $app['postgres.db-mgmt-job']->dump(
                         $request->get('host'),
                         $request->get('database'),
                         $request->get('destinationPath'),
