@@ -2,6 +2,9 @@
 
 namespace Lstr\Postgres\DbMgmt\Service;
 
+use Exception;
+use Lstr\Postgres\DbMgmt\Model\Host;
+
 class DbHostManagerService
 {
     /**
@@ -31,7 +34,7 @@ class DbHostManagerService
     {
         $this->lazyLoadHost($host_key);
 
-        if (empty($this->host[$host_key])) {
+        if (empty($this->hosts[$host_key])) {
             throw new Exception("Host with key '{$host_key}' not found.");
         }
 
@@ -42,7 +45,7 @@ class DbHostManagerService
      * @param $host_key
      * @return Host
      */
-    public function lazyLoadHost($host_key)
+    private function lazyLoadHost($host_key)
     {
         if (array_key_exists($host_key, $this->hosts)) {
             return $this->hosts[$host_key];
@@ -54,12 +57,12 @@ class DbHostManagerService
         }
 
         $host_config = $this->host_config[$host_key];
-        $this->hosts[$host_key] = new Host([
-            'hostname' => $host_config['hostname'],
-            'username' => $host_config['username'],
-            'password' => $host_config['password'],
-            'pg_bin'   => $host_config['pg_bin'],
-        ]);
+        $this->hosts[$host_key] = new Host(
+            $host_config['hostname'],
+            $host_config['username'],
+            $host_config['password'],
+            $host_config['pg_bin']
+        );
 
         return $this->hosts[$host_key];
     }
