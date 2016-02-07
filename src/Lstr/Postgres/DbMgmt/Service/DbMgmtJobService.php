@@ -17,7 +17,7 @@ class DbMgmtJobService
     private $job_queue;
 
     /**
-     * @param object $db_host_manager
+     * @param DbHostManagerService $db_host_manager
      */
     public function __construct(DbHostManagerService $db_host_manager, JobQueue $job_queue)
     {
