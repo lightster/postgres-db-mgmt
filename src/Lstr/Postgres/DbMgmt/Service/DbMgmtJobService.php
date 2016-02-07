@@ -7,7 +7,7 @@ use Hodor\JobQueue\JobQueue;
 class DbMgmtJobService
 {
     /**
-     * @var object
+     * @var DbHostManagerService
      */
     private $db_host_manager;
 
@@ -19,7 +19,7 @@ class DbMgmtJobService
     /**
      * @param object $db_host_manager
      */
-    public function __construct($db_host_manager, JobQueue $job_queue)
+    public function __construct(DbHostManagerService $db_host_manager, JobQueue $job_queue)
     {
         $this->db_host_manager = $db_host_manager;
         $this->job_queue = $job_queue;
