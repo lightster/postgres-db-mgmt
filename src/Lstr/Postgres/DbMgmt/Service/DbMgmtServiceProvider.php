@@ -11,7 +11,7 @@ class DbMgmtServiceProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['postgres.db-mgmt-job'] = $app->share(function () use ($app) {
-            return new DbMgmtJobService(new \stdclass, $app['job-queue']);
+            return new DbMgmtJobService($app['host-manager'], $app['job-queue']);
         });
     }
 

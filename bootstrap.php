@@ -7,6 +7,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Silex\Application;
 
 use Lstr\Silex\Config\ConfigServiceProvider;
+use Lstr\Postgres\DbMgmt\Service\DbHostManagerService;
 use Lstr\Postgres\DbMgmt\Service\DbMgmtServiceProvider;
 use Lstr\Postgres\DbMgmt\Service\HodorServiceProvider;
 
@@ -27,5 +28,6 @@ if (isset($app['config']['debug'])) {
 }
 
 $app['job-queue'] = $app['hodor']($app['config']['job_queue']['config_file']);
+$app['host-manager'] = new DbHostManagerService($app['config']['hosts']);
 
 return $app;
