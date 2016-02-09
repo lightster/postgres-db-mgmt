@@ -60,7 +60,6 @@ class DbHostManagerService
         $this->hosts[$host_key] = new Host(
             $host_config['hostname'],
             $host_config['username'],
-            $host_config['password'],
             $host_config['pg_bin']
         );
 
