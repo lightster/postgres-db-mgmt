@@ -30,4 +30,28 @@ class Host
         $this->username = $username;
         $this->pg_bin = $pg_bin;
     }
+
+    /**
+     * @return string
+     */
+    public function getHostname()
+    {
+        return $this->hostname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPathToPgBin($bin)
+    {
+        return rtrim($this->pg_bin, '\/\\') . '/' . $bin;
+    }
 }
