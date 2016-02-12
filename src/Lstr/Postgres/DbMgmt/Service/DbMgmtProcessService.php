@@ -28,7 +28,7 @@ class DbMgmtProcessService
      * @param string $callback_url
      * @return array
      */
-    public function dump($host_key, $database, $dest_path, $callback_url = null)
+    public function dump($host_key, $database, $dest_path)
     {
         $host = $this->db_host_manager->getHost($host_key);
 
