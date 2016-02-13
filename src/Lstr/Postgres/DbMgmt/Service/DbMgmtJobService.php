@@ -2,6 +2,7 @@
 
 namespace Lstr\Postgres\DbMgmt\Service;
 
+use GuzzleHttp\Client as GuzzleClient;
 use Hodor\JobQueue\JobQueue;
 
 class DbMgmtJobService
@@ -57,6 +58,22 @@ class DbMgmtJobService
         );
 
         $this->queueHttpPostRequest($job_params['callback_url'], $result);
+    }
+
+    /**
+     * @param array $job_params
+     */
+    public function runHttpPostRequest(array $job_params)
+    {
+        $client = new GuzzleClient([
+            'timeout'         => 10.0,
+            'connect_timeout' => 10.0,
+        ]);
+        $response = $client->request(
+            'POST',
+            $job_params['callback_url'],
+            ['json' => $job_params['callback_params']]
+        );
     }
 
     /**
