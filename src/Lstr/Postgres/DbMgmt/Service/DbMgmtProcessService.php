@@ -32,14 +32,10 @@ class DbMgmtProcessService
         $host = $this->db_host_manager->getHost($host_key);
 
         $command = $host->getPathToPgBin('pg_dump')
-            . " -U "
-            . escapeshellarg($host->getUsername())
-            . " -h "
-            . escapeshellarg($host->getHostname())
-            . " -F c "
-            . escapeshellarg($database)
-            . " -v > "
-            . escapeshellarg($dest_path);
+            . " -U " . escapeshellarg($host->getUsername())
+            . " -h " . escapeshellarg($host->getHostname())
+            . " -F c " . escapeshellarg($database)
+            . " -v > " . escapeshellarg($dest_path);
 
         $process = new Process($command);
         $process->setTimeout(60 * 60 * 6); // 6 hours
