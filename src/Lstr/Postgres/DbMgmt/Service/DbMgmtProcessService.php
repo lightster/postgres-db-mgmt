@@ -25,7 +25,6 @@ class DbMgmtProcessService
      * @param string $host_key
      * @param string $database
      * @param string $dest_path
-     * @param string $callback_url
      * @return array
      */
     public function dump($host_key, $database, $dest_path)
