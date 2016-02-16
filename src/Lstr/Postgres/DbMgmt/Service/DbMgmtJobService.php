@@ -69,7 +69,7 @@ class DbMgmtJobService
             'timeout'         => 10.0,
             'connect_timeout' => 10.0,
         ]);
-        $response = $client->request(
+        $client->request(
             'POST',
             $job_params['callback_url'],
             ['json' => $job_params['callback_params']]
