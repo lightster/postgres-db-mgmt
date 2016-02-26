@@ -38,7 +38,7 @@ class DbMgmtControllerProvider implements ControllerProviderInterface
 
                     return $app->json($job);
                 } catch (Exception $exception) {
-                    return $app->json($exception->getMessage());
+                    return $app->json($exception->getMessage(), 500);
                 }
             }
         );
