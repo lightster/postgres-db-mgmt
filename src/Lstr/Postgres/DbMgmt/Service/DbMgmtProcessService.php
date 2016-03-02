@@ -14,11 +14,17 @@ class DbMgmtProcessService
     private $db_host_manager;
 
     /**
+     * @var DumpPathManagerService
+     */
+    private $dump_path_manager;
+
+    /**
      * @param DbHostManagerService $db_host_manager
      */
-    public function __construct(DbHostManagerService $db_host_manager)
+    public function __construct(DbHostManagerService $db_host_manager, DumpPathManagerService $dump_path_manager)
     {
         $this->db_host_manager = $db_host_manager;
+        $this->dump_path_manager = $dump_path_manager;
     }
 
     /**
@@ -30,6 +36,8 @@ class DbMgmtProcessService
     public function dump($host_key, $database, $dest_path)
     {
         $host = $this->db_host_manager->getHost($host_key);
+
+        $this->dump_path_manager->checkDestinationPath($dest_path);
 
         $command = $host->getPathToPgBin('pg_dump')
             . " -U " . escapeshellarg($host->getUsername())
@@ -50,6 +58,7 @@ class DbMgmtProcessService
 
         if ($return['exitCode']) {
             $return['stderr'] = $process->getErrorOutput();
+            $return['command'] = $command;
         }
 
         return $return;
@@ -64,6 +73,8 @@ class DbMgmtProcessService
     public function restore($host_key, $database, $source_path)
     {
         $host = $this->db_host_manager->getHost($host_key);
+
+        $this->dump_path_manager->checkDestinationPath($source_path);
 
         $create_response = $this->create($host, $database);
         if ($create_response['exitCode']) {
