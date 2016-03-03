@@ -45,9 +45,18 @@ class DumpPathManagerService
 
     /**
      * @param array $valid_paths
-     * @param string $path
+     * @param string $proposed_path
      */
-    private function checkPath(array $valid_paths, $path)
+    private function checkPath(array $valid_paths, $proposed_path)
     {
+        $canonical_proposed_path = realpath($proposed_path);
+
+        foreach ($valid_paths as $valid_path) {
+            if (strpos($canonical_proposed_path, realpath($valid_path)) === 0) {
+                return;
+            }
+        }
+
+        throw new Exception("'{$canonical_proposed_path}' is not in  the list of valid paths.");
     }
 }
