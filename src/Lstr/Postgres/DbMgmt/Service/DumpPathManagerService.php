@@ -46,6 +46,7 @@ class DumpPathManagerService
     /**
      * @param array $valid_paths
      * @param string $proposed_path
+     * @throws Exception
      */
     private function checkPath(array $valid_paths, $proposed_path)
     {
