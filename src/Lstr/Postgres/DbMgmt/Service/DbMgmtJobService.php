@@ -61,6 +61,39 @@ class DbMgmtJobService
     }
 
     /**
+     * @param string $host_key
+     * @param string $database
+     * @param string $source_path
+     * @param string $callback_url
+     */
+    public function queueRestore($host_key, $database, $source_path, $callback_url = null)
+    {
+        $this->job_queue->push(
+            'postgres.db-mgmt-job.runRestore',
+            [
+                'host_key'         => $host_key,
+                'database'         => $database,
+                'source_path'      => $source_path,
+                'callback_url'     => $callback_url,
+            ]
+        );
+    }
+
+    /**
+     * @param array $job_params
+     */
+    public function runRestore(array $job_params)
+    {
+        $result = $this->process_service->restore(
+            $job_params['host_key'],
+            $job_params['database'],
+            $job_params['source_path']
+        );
+
+        $this->queueHttpPostRequest($job_params['callback_url'], $result);
+    }
+
+    /**
      * @param array $job_params
      */
     public function runHttpPostRequest(array $job_params)
