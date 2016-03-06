@@ -58,6 +58,6 @@ class DumpPathManagerService
             }
         }
 
-        throw new Exception("'{$canonical_proposed_path}' is not in  the list of valid paths.");
+        throw new Exception("{$proposed_path}' ('{$canonical_proposed_path}') is not in  the list of valid paths.");
     }
 }
